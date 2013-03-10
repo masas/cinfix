@@ -9,7 +9,7 @@ Cinfix is a simple library providing infix notation in Clojure.
     15
 
     ;; arrayWith[index] 
-    => (let [a ["a" "b" "
+    => (let [a ["a" "b" "c"]]
           (str ($= a[0]) ($= a[1]) ($= a[2])))
      "abc"
 
