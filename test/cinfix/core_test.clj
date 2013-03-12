@@ -100,3 +100,8 @@
     (is (= ($= fcall(1)) "arg-count-1,1"))
     (is (= ($= fcall((2),(3))) "arg-count-2,2,3"))
     (is (= ($= fcall((4),(5),(6))) "arg-count-3,4,5,6"))))
+
+(deftest string-arg-test
+  (testing "文字列で渡すとtokenizeしてから評価"
+    (is (= ($= "fcall()") "arg-count-0"))
+    (is (= ($= "1+2+3*4+5") 20))))

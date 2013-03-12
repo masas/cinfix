@@ -1,4 +1,5 @@
-(ns cinfix.core)
+(ns cinfix.core
+  (:use cinfix.tokenizer))
 
 ;;
 (def +operator-rank+
@@ -135,10 +136,12 @@ varname[index]を扱う為の処理、とっても遅い"
 (defn expression
   "infix notation symbol list -> sexpression"
   [s]
-  (let [[result rest-lst] (simple-expression 0 (first s) (next s))]
-    (when (not (nil? rest-lst))
-      (throw (ex-info "error" {:original-expression s :rest-data rest-lst :out-sexp result} ) ))
-    result))
+  (if (and (= (count s) 1) (string? (first s)))
+    (recur (read-string (tokenize (first s))))
+    (let [[result rest-lst] (simple-expression 0 (first s) (next s))]
+      (when (not (nil? rest-lst))
+        (throw (ex-info "error" {:original-expression s :rest-data rest-lst :out-sexp result} ) ))
+      result)))
 
 (defmacro $$
   "分かち書きした普通の式をs式に変換する、各識別子はclojureのreaderで区分けされる必要があるのでa+bと a + bは異なる扱いをうける、array[idx],func(arg)みたいなのは[],()が処理してくれるので分かち書きの必要は無い。"

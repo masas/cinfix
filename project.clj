@@ -1,4 +1,4 @@
-(defproject cinfix "0.1.0"
+(defproject cinfix "0.2.0"
   :description "cheap infix notation library"
   :url "http://github.com/masas/cinfix"
   :license {:name "Eclipse Public License"
