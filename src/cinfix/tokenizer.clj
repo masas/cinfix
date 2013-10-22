@@ -20,7 +20,7 @@
 
 (declare read-word)
 
-(defn- read-seq
+(defn read-seq
   "sをendstrがヒットするまで分解して返す"
   [^String s startstr endstr]
   (loop [result (list startstr) s (subs s (count startstr))]
@@ -53,3 +53,4 @@
   "入力文字列を単語で分かち書きし、reader-stringで読める文字列を作って返す"
   [^String s]
   (str "(" (first (read-seq s "" "")) ")"))
+
